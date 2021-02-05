@@ -1,0 +1,19 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.content-cont {
+  margin-top: 5%;
+  padding: 5%;
+  -webkit-box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
+  box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
+  border-radius: 8px;
+}
+
+.outer-cont {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
