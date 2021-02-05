@@ -1,5 +1,4 @@
-class FastspringOrderService
-
+class FastspringChargeService
   def self.create_order(order_id)
     new(order_id).get_order
   end

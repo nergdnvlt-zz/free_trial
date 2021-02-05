@@ -25,7 +25,7 @@ window.popupWebhookReceived = function(fsData) {
   let fsOrderId = fsData.id
 
   
-  const fetchPromise = fetch(`/api/v1/orders/${fsOrderId}`, {
+  const fetchPromise = fetch(`/api/v1/charges/${fsOrderId}`, {
     method: 'POST'
   });
   fetchPromise.then(response => {
@@ -37,7 +37,7 @@ window.popupWebhookReceived = function(fsData) {
 
 window.popupClose = function(fsData) {
   if (fsProduct == "fastspring-premium-free") {
-    window.location.href(`/${fsAccount}`)
+    window.location.href = `/${fsAccount}`;
   }
 };
 

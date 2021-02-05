@@ -10,21 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_020431) do
+ActiveRecord::Schema.define(version: 2021_02_05_141431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "orders", force: :cascade do |t|
-    t.string "fs_order_id"
+  create_table "charges", force: :cascade do |t|
+    t.string "fs_charge_id"
     t.string "total"
     t.boolean "completed"
+    t.bigint "subscription_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscription_id"], name: "index_charges_on_subscription_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "fs_sub_id"
     t.string "product"
     t.string "product_path"
+    t.boolean "active"
+    t.string "state"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,5 +46,6 @@ ActiveRecord::Schema.define(version: 2021_02_05_020431) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "orders", "users"
+  add_foreign_key "charges", "subscriptions"
+  add_foreign_key "subscriptions", "users"
 end

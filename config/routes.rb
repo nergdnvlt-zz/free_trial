@@ -3,8 +3,12 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
-      post '/orders/:order_id', to: 'orders#create'
       get '/accounts/:account_id', to: 'accounts#show'
+
+      post '/charges/:charge_id', to: 'charges#create'
+      post '/fastspring', to: 'fastspring#create'
+
+
     end
   end
 

@@ -4,19 +4,27 @@ class FastspringCreationService
   end
 
   def build_account_and_order
-    return true if add_order(create_user())
+    return true if @user && @sub && @charge
 
     false
   end
 
   def initialize(fs_order)
     @account_info = fs_order[:recipients][0][:recipient]
-    @order_info = {
-      fs_order_id: fs_order[:id],
+    @sub_info = {
+      fs_sub_id: fs_order[:items][0][:subscription],
+      product: fs_order[:items][0][:display],
+      product_path: fs_order[:items][0][:product],
+    }
+    @charge_info = {
+      fs_charge_id: fs_order[:id],
       completed: fs_order[:completed],
       total: fs_order[:total],
-      product: fs_order[:items][0]
     }
+    @user = create_user
+    @sub = create_sub
+    @charge = create_charge
+    binding.pry
   end
 
   def create_user
@@ -28,15 +36,21 @@ class FastspringCreationService
     user
   end
 
-  def add_order(user)
-    user.orders.create(
-      fs_order_id: @order_info[:fs_order_id],
-      product: @order_info[:product][:display],
-      product_path: @order_info[:product][:product],
-      total: @order_info[:total],
-      completed: @order_info[:completed]
+  def create_sub
+    sub = @user.subscriptions.create(
+      fs_sub_id: @sub_info[:fs_sub_id],
+      product: @sub_info[:product],
+      product_path: @sub_info[:product_path],
     )
-    user
+    sub
   end
 
+  def create_charge
+    charge = @sub.charges.create(
+      fs_charge_id: @charge_info[:fs_charge_id],
+      total: @charge_info[:total],
+      completed: @charge_info[:completed],
+    )
+    charge
+  end
 end
