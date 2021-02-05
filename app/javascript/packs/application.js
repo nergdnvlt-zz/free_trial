@@ -15,3 +15,40 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+let fsAccount;
+let fsProduct;
+
+window.popupWebhookReceived = function(fsData) {
+  fsAccount = fsData.account
+  fsProduct = fsData.items[0].product
+  
+  let fsOrderId = fsData.id
+
+  
+  const fetchPromise = fetch(`/api/v1/orders/${fsOrderId}`, {
+    method: 'POST'
+  });
+  fetchPromise.then(response => {
+    console.log(response);
+  });
+};
+
+
+
+window.popupClose = function(fsData) {
+  if (fsProduct == "fastspring-premium-free") {
+    window.location.replace(`http://localhost:3000/${fsAccount}`)
+  }
+};
+
+window.fsAccountRedirect = function() {
+  fetch(`/api/v1/accounts/${gon.account}`, {
+    method: 'GET'
+  })
+  .then(response =>
+    response.json()
+  )
+  .then(body =>
+    window.open(`${body.url}#/subscriptions`, '_blank')
+  )
+};
