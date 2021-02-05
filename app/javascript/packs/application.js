@@ -37,7 +37,7 @@ window.popupWebhookReceived = function(fsData) {
 
 window.popupClose = function(fsData) {
   if (fsProduct == "fastspring-premium-free") {
-    window.location.replace(`http://localhost:3000/${fsAccount}`)
+    window.location.href(`/${fsAccount}`)
   }
 };
 
