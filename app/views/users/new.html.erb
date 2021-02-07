@@ -1,0 +1,28 @@
+<div class="outer-cont">
+
+  <div class="content-cont">
+
+    <%= form_for @user do |f| %>
+      <h5>Your Info:</h5>
+
+      <div class='form_field'>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </div>
+
+      <div class='form_field'>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+      </div>
+
+      <div class='form_field'>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+      </div>
+
+      <%= f.submit 'Create Account', class: "freemium-acct" %>
+    <% end %>
+
+  </div>
+
+</div>

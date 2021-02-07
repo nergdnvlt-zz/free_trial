@@ -34,12 +34,16 @@ window.popupWebhookReceived = function(fsData) {
 };
 
 
-
 window.popupClose = function(fsData) {
   if (fsProduct == "fastspring-premium-free") {
     window.location.href = `/${fsAccount}`;
+  } else if (fsProduct == "fastspring-premium-free-trial") {
+    window.location.href = `/trial/${fsAccount}`;
+  } else {
+    window.location.reload();
   }
 };
+
 
 window.fsAccountRedirect = function() {
   fetch(`/api/v1/accounts/${gon.account}`, {
@@ -51,4 +55,24 @@ window.fsAccountRedirect = function() {
   .then(body =>
     window.open(`${body.url}#/subscriptions`, '_blank')
   )
+};
+
+
+window.fsSecure = function(email, first, last) {
+  let fsPayload = {
+    "contact": {
+      "email": email,
+      "firstName": first,
+      "lastName": last
+    },
+    "items": [
+      {
+        "product": "fastspring-premium-standard",
+        "quantity": 1
+      }
+    ]
+  }
+
+  fastspring.builder.secure(fsPayload);
+  fastspring.builder.checkout();
 };

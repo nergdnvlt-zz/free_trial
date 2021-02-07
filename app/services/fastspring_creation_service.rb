@@ -24,7 +24,6 @@ class FastspringCreationService
     @user = create_user
     @sub = create_sub
     @charge = create_charge
-    binding.pry
   end
 
   def create_user

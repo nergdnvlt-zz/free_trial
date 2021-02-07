@@ -13,11 +13,7 @@ class WebhookService
 
   def process_ids
     response_string = ''
-    a = process_events
-    binding.pry
-    
-    a.each_with_index do |event, index|
-    # process_events.each_with_index do |event, index|
+    process_events.each_with_index do |event, index|
       response_string << event
       if index != (process_events.length - 1)
         response_string << '\n'

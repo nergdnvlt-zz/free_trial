@@ -1,0 +1,27 @@
+<%= include_gon %>
+<div class="outer-cont"> 
+  <div class="content-cont">
+    
+    <% if @user.subscriptions.empty? %>
+      <div>
+      <h5><%= @user.first_name %>, you are now using a limited part of the product.</h5> 
+      <h5>When you are ready please buy a subscription</h5> 
+      </div>
+
+      <div class="btn-cont">
+        <button class="freemium-acct" onclick="fsSecure(gon.user.email, gon.user.first_name, gon.user.last_name);">
+          Buy Now
+        </button>
+      </div>
+
+    <% else %>
+
+      <div>
+        <h5><%= @user.first_name %>, you are now using the full paid product.</h5> 
+      </div>
+
+    <% end %>
+
+  </div>
+
+</div>

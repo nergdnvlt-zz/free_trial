@@ -1,11 +1,19 @@
 <%= include_gon %>
-<div class="outer-cont">
-
+<div class="outer-cont"> 
   <div class="content-cont">
+    
+    <% if @user.subscriptions.first.product_path == "fastspring-premium-free" %>
+    <div>
+    <h5><%= @user.first_name %>, Please Update Your Payment Method Here</h5> 
+    </div>
 
-  <button class="paymentNeeded" onclick="fsAccountRedirect()">
-    Update Your Payment Method
-  </button>
+    <div class="btn-cont">
+      <button class="paymentNeeded" onclick="fsAccountRedirect()">
+        Update Your Payment Method
+      </button>
+    </div>
+
+    <% end %>
 
   </div>
 

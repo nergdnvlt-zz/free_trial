@@ -12,9 +12,15 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'free-trial', to: 'pages#free_trial', as: 'free_trial'
-  get 'freemium', to: 'pages#freemium', as: 'freemium'
-  get 'rollover', to: 'pages#rollover', as: 'rollover'
+  resources :users
+
+  get '/free-trial', to: 'pages#free_trial', as: 'free_trial'
+  
+  get '/freemium', to: 'pages#freemium', as: 'freemium'
+  get '/fastspring/:id', to: 'users#fastspring', as: 'fastspring'
+  
+  get '/rollover', to: 'pages#rollover', as: 'rollover'
+  get '/trial/:account_id', to: 'pages#trial', as: 'trial'
 
   get '/:fs_account_id', to: 'users#show'
 

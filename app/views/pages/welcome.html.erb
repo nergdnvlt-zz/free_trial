@@ -1,6 +1,13 @@
+<div class="outer-cont">
 
-<%= link_to 'Free Trial',  free_trial_path %>
+  <div class="content-cont">
 
-<%= link_to 'Rollover',  rollover_path %>
+    <%= button_to 'Free Trial',  free_trial_path, method: 'get' %>
 
-<%= link_to 'Freemium',  freemium_path %>
+    <%= button_to 'Rollover',  rollover_path, method: 'get' %>
+
+    <%= button_to 'Freemium',  freemium_path, method: 'get' %>
+
+  </div>
+
+</div>

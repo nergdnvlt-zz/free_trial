@@ -10,8 +10,35 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  *= require normalize
  *= require skeleton
+ *= require_tree .
+ *= require_self
  */
+ .btn-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-cont {
+  margin-top: 5%;
+  padding: 5%;
+  -webkit-box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
+  box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
+  border-radius: 8px;
+}
+
+.freemium-acct {
+  background-color: #4385F4 !important;
+  color: white !important;
+}
+
+.outer-cont {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
