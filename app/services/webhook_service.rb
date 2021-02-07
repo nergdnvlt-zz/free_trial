@@ -8,13 +8,16 @@ class WebhookService
   end
 
   def initialize(request)
-    @events = create_events(request)
-    binding.pry
+    @events = create_events(request[:events])
   end
 
   def process_ids
     response_string = ''
-    process_events.each_with_index do |event, index|
+    a = process_events
+    binding.pry
+    
+    a.each_with_index do |event, index|
+    # process_events.each_with_index do |event, index|
       response_string << event
       if index != (process_events.length - 1)
         response_string << '\n'
@@ -28,9 +31,9 @@ class WebhookService
   end
 
   def create_events(request)
-    request[:events].map do |event|
+    request.map do |event|
       Event.new(
-        fs_id: event[:id],
+        fs_event_id: event[:id],
         fs_type: event[:type],
         data: event[:data]
       )

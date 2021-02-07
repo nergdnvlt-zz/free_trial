@@ -1,25 +1,28 @@
 class SubService
   def initialize(sub_event)
-    @type = sub_event.fs_type
-    @id = sub_event.fs_id
-    @sub_info = sub_event.data.symbolize_keys
-    @sub = sub
-    binding.pry
+    @fs_event_id = sub_event.fs_event_id
+    @sub_info = sub_event.data
+    @sub = Subscription.find_by(fs_sub_id: sub_event.data[:subscription])
   end
 
   def eval_activation
-    if !@sub_info[:customReferenceId]
-      activate_sub
+    if @sub
+      return @fs_event_id if reconcile_sub
     else
-      reconcile_sub
+      activate_sub
     end
   end
 
   def activate_sub
+    # Creat account
+    # THEN
     # Create new sub
   end
 
   def reconcile_sub
-    # If sub exists
+    @sub.active = @sub_info[:active]
+    @sub.state = @sub_info[:state]
+    @sub.save
+    @sub
   end
 end
